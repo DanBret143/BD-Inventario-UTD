@@ -87,3 +87,8 @@ WHERE NOT EXISTS (SELECT 1 FROM roles WHERE nombre = 'INVENTARIOS');
 INSERT INTO roles (nombre)
 SELECT 'CONSULTA'
 WHERE NOT EXISTS (SELECT 1 FROM roles WHERE nombre = 'CONSULTA');
+
+-- Usuario administrador por defecto para la primera ejecución del contenedor
+INSERT INTO usuarios (nombre, correo, password_hash, id_rol, activo, cargo)
+SELECT 'Administrador', 'admin@utd.com', '$2a$10$J0lM/e2x7Q3g4mK0Vqz1qO1KfY9l0S8s2QG1o2v4Jq6mR8t9dM6u', 1, 1, 'Administrador'
+WHERE NOT EXISTS (SELECT 1 FROM usuarios WHERE correo = 'admin@utd.com');
