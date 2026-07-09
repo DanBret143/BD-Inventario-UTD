@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:latest
+    container_name: inventario-db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5433:5432"
+    volumes:
+      - inventario-db-data:/var/lib/postgresql
+    restart: unless-stopped
+
+volumes:
+  inventario-db-data:
